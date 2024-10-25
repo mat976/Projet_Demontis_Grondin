@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id']) && isset($_
 </head>
 <body>
     <!-- nav bar-->
-    <?php include 'elements/nav_bar.php'; ?>
+    <?php include '../elements/nav_bar_admin.php'; ?>
 
     <div class="container mt-4">
         <h1 class="mb-4">Panneau d'administration</h1>
