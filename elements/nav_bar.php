@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="path/to/icon.png" alt="Icon" width="30" height="24">
+        <a class="navbar-brand" href="./home.php">
+            <img class="rounded" src="./images/pythongreen.png" alt="logo" width="64" height="64">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,22 @@
                 if (!isset($_SESSION)) {
                     session_start();
                 }
+
+                if (isset($_SESSION['roles'])) {
+                    $roles = json_decode($_SESSION['roles'], true);
+                    if (is_array($roles)) {
+                        if (in_array("ROLE_ADMIN", $roles)) {
+                            echo "Hey, your membership is Officer, here is your page";
+                        } elseif (in_array("ROLE_USER", $roles)) {
+                            echo "Hey your membership is Member, here is your page";
+                        }
+                    } else {
+                        echo "Invalid roles format.";
+                    }
+                } else {
+                    echo "Test";
+                }
+
 
                 if (isset($_SESSION['user_id'])) {
                     // L'utilisateur est connecté, afficher le bouton de déconnexion

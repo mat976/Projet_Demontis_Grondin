@@ -18,9 +18,7 @@ $conn = new PDO( 'mysql:host=localhost;dbname=projet_dg', $db_username, $db_pass
 if(!$conn){
     die("Fatal Error: Connection Failed!");
 }
-
 ?>
-
 <section class="h-100 gradient-form" style="background-color: #eee;">
     <div class="container py-3 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -92,11 +90,8 @@ if(!$conn){
         </div>
     </div>
 </section>
-
 </body>
-
 <!-- Scripts -->
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo = $_POST['pseudo'];

@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user && password_verify($pass, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['pseudo'] = $pseudo;
+            $_SESSION['roles'] = $user['roles'];
             
             header("Location: ../home.php");
             exit();
