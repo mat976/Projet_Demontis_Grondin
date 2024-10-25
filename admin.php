@@ -125,14 +125,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id']) && isset($_
                         </form>
                     </td>
                     <td>
-                        <a href="edit_user.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-primary">Modifier</a>
                         <a href="delete_user.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="add_user.php" class="btn btn-success">Ajouter un utilisateur</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
