@@ -8,7 +8,7 @@ if (isset($_SESSION['roles'])) {
             // L'utilisateur est un administrateur, continuer
         } elseif (in_array("ROLE_USER", $roles)) {
             // L'utilisateur est un utilisateur, rediriger vers une page d'accueil ou autre
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit();
         } else {
             echo "Invalid roles format.";

@@ -3,7 +3,7 @@ session_start();
 
 // Vérification que l'utilisateur est connecté et a le rôle d'administrateur
 if (!isset($_SESSION['roles']) || !in_array("ROLE_ADMIN", json_decode($_SESSION['roles'], true))) {
-    header("Location: security/login.php");
+    header("Location: ../security/login.php");
     exit();
 }
 

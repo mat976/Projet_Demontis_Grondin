@@ -7,7 +7,7 @@ if (isset($_SESSION['roles'])) {
     if (is_array($roles)) {
         if (!in_array("ROLE_ADMIN", $roles)) {
             // L'utilisateur n'est pas un administrateur, rediriger vers une page d'accueil ou autre
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit();
         }
     } else {

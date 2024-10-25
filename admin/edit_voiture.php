@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if (!isset($_SESSION['roles']) || !in_array("ROLE_ADMIN", json_decode($_SESSION['roles'], true))) {
-    header("Location: security/login.php");
+    header("Location: ../security/login.php");
     exit();
 }
 
