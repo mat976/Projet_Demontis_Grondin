@@ -22,7 +22,7 @@ if(!$conn){
 ?>
 
 <section class="h-100 gradient-form" style="background-color: #eee;">
-    <div class="container py-5 h-100">
+    <div class="container py-3 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
                 <div class="card rounded-3 text-black">
@@ -31,8 +31,6 @@ if(!$conn){
                             <div class="card-body p-md-5 mx-md-4">
 
                                 <div class="text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                                         style="width: 185px;" alt="logo">
                                     <h4 class="mt-1 mb-5 pb-1">Nous sommes Projet_dg</h4>
                                 </div>
 
@@ -64,13 +62,13 @@ if(!$conn){
                                         placeholder="Confirmer le mot de passe" required />
                                     </div>
 
-                                    <div class="text-center pt-1 mb-5 pb-1">
+                                    <div class="text-center pt-1 mb-2 pb-1">
                                         <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
                                             S'inscrire
                                         </button>
                                     </div>
 
-                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                    <div class="d-flex align-items-center justify-content-center pb-2">
                                         <p class="mb-0 me-2">Déjà inscrit(e)?</p>
                                         <a href="login.php" class="btn btn-outline-danger">Se connecter</a>
                                     </div>
@@ -80,7 +78,11 @@ if(!$conn){
                         </div>
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                             <div class="text-black px-3 py-4 p-md-5 mx-md-4">
-                                <h4 class="mb-4">Rejoignez-nous dès aujourd'hui</h4>
+                                <div class="d-flex justify-content-center">
+                                    <img class="rounded" src="../images/pythongreen.png"
+                                         style="width: 200px;" alt="logo">
+                                </div>
+                                <h4 class="mb-4 mt-4">Rejoignez-nous dès aujourd'hui</h4>
                                 <p class="small mb-0">Créez votre compte pour accéder à toutes nos fonctionnalités et offres exclusives. Nous sommes ravis de vous accueillir dans notre communauté !</p>
                             </div>
                         </div>
