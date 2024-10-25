@@ -73,12 +73,30 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="col">
                             <div class="card h-100">
                                 <img src="<?php echo htmlspecialchars($row['images']); ?>" class="card-img-top" alt="Car Image">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($row['brand']); ?></h5>
-                                    <p class="card-text"><?php echo htmlspecialchars($row['model']); ?></p>
+                                <div class="card-body row-md">
+                                    <h5 class="card-title fs-6-md"><i>Marque: </i><?php echo htmlspecialchars($row['brand']); ?></h5>
+                                    <div class="card-text d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center">
+                                        <p class="mb-2 mb-sm-0"><i>Modèle : </i><?php echo htmlspecialchars($row['model']); ?></p>
+                                        <a class="btn btn-primary btn-sm" href="#">
+                                            Voir Plus
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+<!--                                    <div class="card-text d-flex justify-content-between">-->
+<!--                                        <p><i>Modèle : </i>--><?php //echo htmlspecialchars($row['model']); ?><!--</p>-->
+<!--                                        <a class="btn btn-primary" href="#">-->
+<!--                                            Voir Plus-->
+<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">-->
+<!--                                                <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>-->
+<!--                                            </svg>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+
                                 </div>
                                 <div class="card-footer d-flex justify-content-between">
-                                    <span><?php echo htmlspecialchars($row['price']); ?></span>
+                                    <span><?php echo htmlspecialchars($row['price']); ?>€</span>
                                     <span><?php
                                         if (htmlspecialchars($row['category']) == '0'){
                                             echo "Neuf";
