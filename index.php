@@ -116,16 +116,47 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <!-- navigation -->
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
+                <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
+                    <a class="page-link" href="?page=1&search=<?php echo urlencode($search); ?>" aria-label="First">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
                 <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
                     <a class="page-link" href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="page-item <?php if(count($result) < $cards_per_page) echo 'disabled'; ?>">
+
+                <?php
+                // Calcule des pages 
+                $total_sql = "SELECT COUNT(*) as count FROM cars WHERE brand LIKE :search OR model LIKE :search";
+                $total_stmt = $conn->prepare($total_sql);
+                $total_stmt->bindParam(':search', $searchParam, PDO::PARAM_STR);
+                $total_stmt->execute();
+                $total_cars = $total_stmt->fetchColumn();
+                $total_pages = ceil($total_cars / $cards_per_page);
+
+                // afichage des pages
+                $start_page = max(1, $page - 2);
+                $end_page = min($total_pages, $page + 2);
+
+                for ($i = $start_page; $i <= $end_page; $i++) {
+                    echo '<li class="page-item ' . ($page == $i ? 'active' : '') . '">';
+                    echo '<a class="page-link" href="?page=' . $i . '&search=' . urlencode($search) . '">' . $i . '</a>';
+                    echo '</li>';
+                }
+                ?>
+
+                <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
                     <a class="page-link" href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
+                    <a class="page-link" href="?page=<?php echo $total_pages; ?>&search=<?php echo urlencode($search); ?>" aria-label="Last">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
                     </a>
                 </li>
             </ul>
