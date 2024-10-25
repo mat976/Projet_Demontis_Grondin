@@ -52,7 +52,7 @@ if(!$conn){
                                     </div>
 
                                     <div class="text-center pt-1 mb-5 pb-1">
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">
+                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
                                             Connexion
                                         </button>
                                         <a class="text-muted" href="#!">Mot de passe oublié?</a>
@@ -87,16 +87,46 @@ if(!$conn){
 <!-- Scripts -->
 
 <?php
-$stmt = $conn->prepare("SELECT * FROM users WHERE pseudo = ?");
-$stmt->execute([$_POST['pseudo']]);
-$user = $stmt->fetch();
+//$stmt = $conn->prepare("SELECT * FROM users WHERE pseudo = ?");
+//$stmt->execute([$_POST['pseudo']]);
+//$user = $stmt->fetch();
 
-if ($user && password_verify($_POST['pass'], $user['pass']))
+//if ($user && password_verify($_POST['pass'], $user['password']))
+//{
+//    echo "valid!";
+//} else {
+//    echo "invalid";
+//}
+
+//Vérification du Pseudo/Derbyname
+if (isset($_POST['pseudo']) AND isset($_POST['pass']))
 {
-    echo "valid!";
-} else {
-    echo "invalid";
+    if (!empty($_POST['pseudo']) AND !empty($_POST['pass']))
+    {
+        $pseudo = $_POST['pseudo'];
+        $req = $conn->prepare('SELECT id, password FROM users WHERE pseudo = :pseudo');
+        $req-> execute(array(
+            'pseudo' => $pseudo));
+
+        $resultat = $req->fetch();
+
+
+        if (!$resultat || !password_verify($_POST['pass'], $resultat['password']))
+        {
+            echo 'Identifiant ou Mot De Passe incorrect.<br/>';
+        }
+        else
+        {
+            echo 'Vous êtes connecté ! :-)<br/>';
+        }
+        $req->closeCursor();
+    }
+    else
+    {
+        echo 'Renseignez un Pseudo/Derbyname et un Mot De Passe.<br/>';
+    }
 }
+
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
