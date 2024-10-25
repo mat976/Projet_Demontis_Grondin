@@ -20,7 +20,7 @@
             </ul>
             <div class="d-flex">
                 <?php
-                // Assurez-vous d'avoir démarré la session au début de votre fichier
+                // prise de la session
                 if (!isset($_SESSION)) {
                     session_start();
                 }
@@ -33,8 +33,8 @@
                 } else {
                     // L'utilisateur n'est pas connecté, afficher les boutons de connexion et d'inscription
                     ?>
-                    <a href="security/login.php" class="btn btn-outline-success me-2">Login</a>
-                    <a href="security/register.php" class="btn btn-outline-primary">Sign In</a>
+                    <a href="security/login.php" class="btn btn-outline-success me-2">Connection</a>
+                    <a href="security/register.php" class="btn btn-outline-primary">Inscription</a>
                     <?php
                 }
                 ?>
