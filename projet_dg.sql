@@ -40,11 +40,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `voitures`
+-- Structure de la table `cars`
 --
 
-DROP TABLE IF EXISTS `voitures`;
-CREATE TABLE IF NOT EXISTS `voitures` (
+DROP TABLE IF EXISTS `cars`;
+CREATE TABLE IF NOT EXISTS `cars` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `brand` char(255) NOT NULL,
   `model` char(255) NOT NULL,
