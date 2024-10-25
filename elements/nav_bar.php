@@ -19,8 +19,25 @@
                 </li>
             </ul>
             <div class="d-flex">
-                <a href="security/login.php" class="btn btn-outline-success me-2">Login</a>
-                <a href="security/register.php" class="btn btn-outline-primary">Sign In</a>
+                <?php
+                // Assurez-vous d'avoir démarré la session au début de votre fichier
+                if (!isset($_SESSION)) {
+                    session_start();
+                }
+
+                if (isset($_SESSION['user_id'])) {
+                    // L'utilisateur est connecté, afficher le bouton de déconnexion
+                    ?>
+                    <a href="security/logout.php" class="btn btn-outline-danger">Déconnexion</a>
+                    <?php
+                } else {
+                    // L'utilisateur n'est pas connecté, afficher les boutons de connexion et d'inscription
+                    ?>
+                    <a href="security/login.php" class="btn btn-outline-success me-2">Login</a>
+                    <a href="security/register.php" class="btn btn-outline-primary">Sign In</a>
+                    <?php
+                }
+                ?>
             </div>
         </div>
     </div>
