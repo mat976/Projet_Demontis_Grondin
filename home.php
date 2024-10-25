@@ -23,8 +23,7 @@
             <?php include 'elements/nav_bar.php'; ?>
 
             <div class="container mt-4">
-                <h1 class="mb-4">Bienvenue sur notre site de concession automobile</h1>
-
+                <h1 class="mb-4 text-center">Bienvenue sur notre site de concession automobile</h1>
                 <div class="row">
                     <div class="col-md-6">
                         <img src="path/to/image1.jpg" alt="Image 1" class="img-fluid mb-3">

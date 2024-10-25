@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
                     <div class="col-12 col-lg-6 col-xl-5">
-                        <img class="img-fluid rounded" loading="lazy" src="./assets/img/about-img-1.jpg" alt="About 1">
+                        <img class="img-fluid rounded" loading="lazy" src="./images/jdm.jpg" alt="About 1">
                     </div>
                     <div class="col-12 col-lg-6 col-xl-7">
                         <div class="row justify-content-xl-center">
@@ -32,8 +32,8 @@
                                                 </svg>
                                             </div>
                                             <div>
-                                                <h2 class="h4 mb-3">Versatile Brand</h2>
-                                                <p class="text-secondary mb-0">We are crafting a digital method that subsists life across all mediums.</p>
+                                                <h2 class="h4 mb-3">Le Japon à portée de main</h2>
+                                                <p class="text-secondary mb-0">Nous sommes spécialisé dans les modèles JDM mais sommes ouvert sur commande à toute autre marques.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -45,8 +45,8 @@
                                                 </svg>
                                             </div>
                                             <div>
-                                                <h2 class="h4 mb-3">Digital Agency</h2>
-                                                <p class="text-secondary mb-0">We believe in innovation by merging primary with elaborate ideas.</p>
+                                                <h2 class="h4 mb-3">Une côte intéressante</h2>
+                                                <p class="text-secondary mb-0">Les modèles que nous vendons sont garantis rares et à une valeur montante chaque année.</p>
                                             </div>
                                         </div>
                                     </div>
