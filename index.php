@@ -1,3 +1,35 @@
+<?php
+// connection a la bdd (pour test)
+$dsn = "mysql:host=localhost;dbname=projet_dg;charset=utf8";
+$username = "root";
+$password = "";
+
+try {
+    $conn = new PDO($dsn, $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
+
+// card logic
+$cards_per_page = 8; // 2 rows x 8 columns
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $cards_per_page;
+
+// recheche logic
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+// prise de donnée sur la bdd
+$sql = "SELECT * FROM cars WHERE brand LIKE :search OR model LIKE :search LIMIT :offset, :cards_per_page";
+$stmt = $conn->prepare($sql);
+$searchParam = '%' . $search . '%';
+$stmt->bindParam(':search', $searchParam, PDO::PARAM_STR);
+$stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+$stmt->bindParam(':cards_per_page', $cards_per_page, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -48,15 +80,56 @@
             </div>
         </nav> 
 
-        <!-- Recherche -->
+        <!-- recherche avec logic bdd  -->
         <div class="container my-4">
             <form method="GET" action="">
                 <div class="input-group mb-3">
-                    <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" >
+                    <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" value="<?php echo htmlspecialchars($search); ?>">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
                 </div>
             </form>
         </div>
+
+        <!-- Card de voitures -->
+        <div class="container">
+            <div class="row row-cols-2 row-cols-md-8 g-4">
+                <?php if (!empty($result)): ?>
+                    <?php foreach ($result as $row): ?>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="<?php echo htmlspecialchars($row['images']); ?>" class="card-img-top" alt="Car Image">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($row['brand']); ?></h5>
+                                    <p class="card-text"><?php echo htmlspecialchars($row['model']); ?></p>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <span><?php echo htmlspecialchars($row['price']); ?></span>
+                                    <span><?php echo htmlspecialchars($row['category']); ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No cars found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- navigation -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
+                    <a class="page-link" href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item <?php if(count($result) < $cards_per_page) echo 'disabled'; ?>">
+                    <a class="page-link" href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
         <!-- Bootstrap JavaScript Libraries -->
         <script
