@@ -41,6 +41,16 @@ function getUsers($conn) {
 
 $voitures = getVoitures($conn);
 $users = getUsers($conn);
+
+// Update user role
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_id']) && isset($_POST['role'])) {
+    $user_id = $_POST['user_id'];
+    $role = $_POST['role'];
+    $stmt = $conn->prepare("UPDATE users SET roles = :roles WHERE id = :id");
+    $stmt->execute(['roles' => json_encode([$role]), 'id' => $user_id]);
+    header("Location: admin.php");
+    exit();
+}
 ?>
 
 <!doctype html>
@@ -105,7 +115,15 @@ $users = getUsers($conn);
                     <td><?= htmlspecialchars($user['pseudo']) ?></td>
                     <td><?= htmlspecialchars($user['firstname']) ?></td>
                     <td><?= htmlspecialchars($user['lastname']) ?></td>
-                    <td><?= htmlspecialchars($user['roles']) ?></td>
+                    <td>
+                        <form method="post" style="display:inline;">
+                            <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                            <select name="role" onchange="this.form.submit()" class="form-select form-select-sm">
+                                <option value="ROLE_USER" <?= in_array("ROLE_USER", json_decode($user['roles'], true)) ? 'selected' : '' ?>>Non Admin</option>
+                                <option value="ROLE_ADMIN" <?= in_array("ROLE_ADMIN", json_decode($user['roles'], true)) ? 'selected' : '' ?>>Admin</option>
+                            </select>
+                        </form>
+                    </td>
                     <td>
                         <a href="edit_user.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-primary">Modifier</a>
                         <a href="delete_user.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</a>
