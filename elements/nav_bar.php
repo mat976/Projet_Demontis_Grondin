@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="mx-3 navbar-brand" href="./home.php">
+        <img class="rounded" src="./images/pythongreen.png" alt="logo" width="64" height="64">
+    </a>
     <div class="container-fluid">
-        <a class="navbar-brand" href="./home.php">
-            <img class="rounded" src="./images/pythongreen.png" alt="logo" width="64" height="64">
-        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
