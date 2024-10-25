@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 25 oct. 2024 à 06:52
+-- Généré le : ven. 25 oct. 2024 à 11:46
 -- Version du serveur : 8.3.0
 -- Version de PHP : 8.2.18
 
@@ -35,16 +35,18 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `description` varchar(255) NOT NULL,
   `price` int NOT NULL,
   `category` char(255) NOT NULL,
-  `images` varchar(255) NOT NULL,
+  `images` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `cars`
 --
 
 INSERT INTO `cars` (`id`, `brand`, `model`, `description`, `price`, `category`, `images`) VALUES
-(1, 'Toyota', 'Celica', 'Toyota Celica GT 1995, 256000km.', 10000, '0', NULL);
+(1, 'Toyota', 'Celica GT', 'Toyota Celica GT 1995, 256000km.', 10000, '1', 'images/toyota-celica-t20.jpg'),
+(4, 'Mazda', 'RX7', '', 40000, '1', 'images/rx7.jpg'),
+(3, 'Subaru', 'Impreza', '', 25000, '1', 'images/subaru.jpg');
 
 -- --------------------------------------------------------
 
@@ -61,14 +63,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` char(255) NOT NULL,
   `roles` json NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `pseudo`, `firstname`, `lastname`, `password`, `roles`) VALUES
-(1, 'ALFClarel', 'Clarel', 'GRONDIN', 'test', '[\"ROLE_ADMIN\"]');
+(2, 'Pseudo', 'Prénom', 'Nom', '$2y$10$/RJRlAq7V0Gf3m2Wr2LIAu4gnA85a5eTVjDF67IStfSBQl9WR5abG', '[\"ROLE_ADMIN\"]');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
