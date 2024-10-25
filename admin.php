@@ -1,8 +1,25 @@
 <?php
 session_start();
 // Vérification que l'utilisateur est connecté et a le rôle d'administrateur
-if (!isset($_SESSION['user_id']) || $_SESSION['roles'] !== 'ROLE_ADMIN') {
-    header("Location: security/login.php");
+if (isset($_SESSION['roles'])) {
+    $roles = json_decode($_SESSION['roles'], true);
+    if (is_array($roles)) {
+        if (in_array("ROLE_ADMIN", $roles)) {
+            // L'utilisateur est un administrateur, continuer
+        } elseif (in_array("ROLE_USER", $roles)) {
+            // L'utilisateur est un utilisateur, rediriger vers une page d'accueil ou autre
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Invalid roles format.";
+            exit();
+        }
+    } else {
+        echo "Invalid roles format.";
+        exit();
+    }
+} else {
+    echo "Test";
     exit();
 }
 
