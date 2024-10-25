@@ -60,7 +60,7 @@ if(!$conn){
 
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Pas encore inscrit(e)?</p>
-                                        <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">S'inscrire</button>
+                                        <a href="register.php" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">S'inscrire</a>
                                     </div>
 
                                 </form>
@@ -117,13 +117,15 @@ if (isset($_POST['pseudo']) AND isset($_POST['pass']))
         }
         else
         {
-            echo 'Vous êtes connecté ! :-)<br/>';
+//            echo 'Vous êtes connecté ! :-)<br/>';
+            echo"<script>window.location.href = '../home.php';</script>";
         }
         $req->closeCursor();
     }
     else
     {
-        echo 'Renseignez un Pseudo/Derbyname et un Mot De Passe.<br/>';
+        echo 'Renseignez un Pseudo et un Mot De Passe.<br/>';
+
     }
 }
 
