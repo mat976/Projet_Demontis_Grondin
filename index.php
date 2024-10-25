@@ -33,7 +33,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
+        <title>Boutique</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -60,7 +60,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <form method="GET" action="">
                 <div class="input-group mb-3">
                     <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" value="<?php echo htmlspecialchars($search); ?>">
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
                 </div>
             </form>
         </div>
@@ -79,19 +79,26 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </div>
                                 <div class="card-footer d-flex justify-content-between">
                                     <span><?php echo htmlspecialchars($row['price']); ?></span>
-                                    <span><?php echo htmlspecialchars($row['category']); ?></span>
+                                    <span><?php
+                                        if (htmlspecialchars($row['category']) == '0'){
+                                            echo "Neuf";
+                                        }
+                                        else{
+                                            echo "Occasion";
+                                        }
+                                        ?></span>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>No cars found.</p>
+                    <p>Aucun modèle existant.</p>
                 <?php endif; ?>
             </div>
         </div>
 
         <!-- navigation -->
-        <nav aria-label="Page navigation">
+        <nav class="pt-3" aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
                     <a class="page-link" href="?page=1&search=<?php echo urlencode($search); ?>" aria-label="First">
