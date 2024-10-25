@@ -28,16 +28,12 @@
                 if (isset($_SESSION['roles'])) {
                     $roles = json_decode($_SESSION['roles'], true);
                     if (is_array($roles)) {
-                        if (in_array("ROLE_ADMIN", $roles)) {
-                            echo "Hey, your membership is Officer, here is your page";
-                        } elseif (in_array("ROLE_USER", $roles)) {
-                            echo "Hey your membership is Member, here is your page";
-                        }
+                        if (in_array("ROLE_ADMIN", $roles)) {?>
+                            <a href="./admin.php" class="btn btn-primary me-2">Admin</a>
+                        <?php }
                     } else {
-                        echo "Invalid roles format.";
+                        echo "ERREUR.";
                     }
-                } else {
-                    echo "Test";
                 }
 
 
