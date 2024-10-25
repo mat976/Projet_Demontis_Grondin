@@ -1,16 +1,3 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <title>Connection</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <!-- Import de Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
-</head>
-
-<!-- Page faite par Clarel-->
-<body>
-
 <?php
 session_start();
 
@@ -28,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pseudo = $_POST['pseudo'];
         $pass = $_POST['pass'];
 
-        $req = $conn->prepare('SELECT id, password FROM users WHERE pseudo = :pseudo');
+        $req = $conn->prepare('SELECT id, password, roles FROM users WHERE pseudo = :pseudo');
         $req->execute(['pseudo' => $pseudo]);
         $user = $req->fetch();
 
@@ -112,55 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </section>
-    <!-- scripts -->
-<?php
-//$stmt = $conn->prepare("SELECT * FROM users WHERE pseudo = ?");
-//$stmt->execute([$_POST['pseudo']]);
-//$user = $stmt->fetch();
 
-//if ($user && password_verify($_POST['pass'], $user['password']))
-//{
-//    echo "valid!";
-//} else {
-//    echo "invalid";
-//}
-
-//Vérification du Pseudo/Derbyname
-
-
-if (isset($_POST['pseudo']) AND isset($_POST['pass']))
-{
-    if (!empty($_POST['pseudo']) AND !empty($_POST['pass']))
-    {
-        $pseudo = $_POST['pseudo'];
-        $req = $conn->prepare('SELECT id, password FROM users WHERE pseudo = :pseudo');
-        $req-> execute(array(
-            'pseudo' => $pseudo));
-
-        $resultat = $req->fetch();
-
-
-        if (!$resultat || !password_verify($_POST['pass'], $resultat['password']))
-        {
-            echo 'Identifiant ou Mot De Passe incorrect.<br/>';
-        }
-        else
-        {
-//            echo 'Vous êtes connecté ! :-)<br/>';
-            echo"<script>window.location.href = '../home.php';</script>";
-        }
-        $req->closeCursor();
-    }
-    else
-    {
-        echo 'Renseignez un Pseudo et un Mot De Passe.<br/>';
-
-    }
-}
-
-
-?>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
 </html>
