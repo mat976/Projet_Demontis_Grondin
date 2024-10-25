@@ -19,8 +19,8 @@
                 </li>
             </ul>
             <div class="d-flex">
-                <button class="btn btn-outline-success me-2" type="button">Login</button>
-                <button class="btn btn-outline-primary" type="button">Sign In</button>
+                <a href="security/login.php" class="btn btn-outline-success me-2">Login</a>
+                <a href="security/register.php" class="btn btn-outline-primary">Sign In</a>
             </div>
         </div>
     </div>
